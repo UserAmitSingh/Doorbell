@@ -1,0 +1,30 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPathWin": "C:\\Users\\js476\\esp\\v5.5.1\\esp-idf",
+  "idf.toolsPathWin": "C:\\Users\\js476\\.espressif",
+  "idf.pythonInstallPath": "C:\\Users\\js476\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
+  "files.associations": {
+    "esp_spp_api.h": "c",
+    "esp_gap_ble_api.h": "c",
+    "ble_spp_server_demo.h": "c",
+    "esp_bt_defs.h": "c",
+    "format": "c",
+    "thread": "c",
+    "esp_log.h": "c",
+    "gpio.h": "c",
+    "nvs_flash.h": "c"
+  },
+  "idf.openOcdConfigs": [
+    "board/esp32s3-builtin.cfg"
+  ],
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32s3"
+  },
+  "clangd.path": "C:\\Users\\js476\\.espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=C:\\Users\\js476\\.espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20241119\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe",
+    "--compile-commands-dir=c:\\MizzouRacing\\Doorbell\\ble_spp_server\\build"
+  ],
+  "idf.portWin": "COM5"
+}

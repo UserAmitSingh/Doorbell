@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+C:/MizzouRacing/Doorbell/ble_spp_server/build/CMakeFiles/bootloader
+C:/MizzouRacing/Doorbell/ble_spp_server/build/CMakeFiles/bootloader.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/CMakeFiles/bootloader-complete.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

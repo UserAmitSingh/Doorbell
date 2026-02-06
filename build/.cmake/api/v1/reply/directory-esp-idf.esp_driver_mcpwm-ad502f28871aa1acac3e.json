@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "esp-idf/esp_driver_mcpwm",
+		"source" : "C:/Users/js476/esp/v5.5.1/esp-idf/components/esp_driver_mcpwm"
+	}
+}

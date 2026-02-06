@@ -1,0 +1,33 @@
+Command: ninja all
+[1/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/doorbell.c.obj
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c: In function 'CLICK_Task':
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c:303:13: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+  303 |     uint8_t temp = 0;
+      |             ^~~~
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c: In function 'gap_event_handler':
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c:163:9: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  163 |         esp_ble_gap_start_advertising(&advertising_params);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c:164:5: note: here
+  164 |     case ESP_GAP_BLE_ADV_START_COMPLETE_EVT:
+      |     ^~~~
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c: At top level:
+C:/MizzouRacing/Doorbell/ble_spp_server/main/doorbell.c:74:17: warning: 'mtu_size' defined but not used [-Wunused-variable]
+   74 | static uint16_t mtu_size = MTU_SIZE;
+      |                 ^~~~~~~~
+[2/9] Linking C static library esp-idf\main\libmain.a
+[3/9] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\MizzouRacing\Doorbell\ble_spp_server\build\bootloader\esp-idf\esptool_py && C:\Users\js476\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/js476/esp/v5.5.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/MizzouRacing/Doorbell/ble_spp_server/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5240 bytes. 0x2dc0 bytes (36%) free.
+[4/9] No install step for 'bootloader'
+[5/9] Completed 'bootloader'
+[6/9] Generating esp-idf/esp_system/ld/sections.ld
+[7/9] Linking CXX executable ble_spp_server_demo.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.10.dev2
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/MizzouRacing/Doorbell/ble_spp_server/build/ble_spp_server_demo.bin
+[9/9] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\MizzouRacing\Doorbell\ble_spp_server\build\esp-idf\esptool_py && C:\Users\js476\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Users/js476/esp/v5.5.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/MizzouRacing/Doorbell/ble_spp_server/build/partition_table/partition-table.bin C:/MizzouRacing/Doorbell/ble_spp_server/build/ble_spp_server_demo.bin"
+ble_spp_server_demo.bin binary size 0xadf90 bytes. Smallest app partition is 0x100000 bytes. 0x52070 bytes (32%) free.
