@@ -219,11 +219,18 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
             // Update connection parameters for power efficiency
             esp_ble_conn_update_params_t conn_params = {0};
             memcpy(conn_params.bda, p_data->connect.remote_bda, sizeof(esp_bd_addr_t));
-            conn_params.min_int = 0x10;    // 20ms (16 * 1.25ms)
-            conn_params.max_int = 0x20;    // 40ms (32 * 1.25ms)
-            conn_params.latency = 50;      // Allow 50 connection events to be skipped
-            conn_params.timeout = 400;     // 4000ms timeout (400 * 10ms)
+            conn_params.min_int = 0x10; // 20ms (16 * 1.25ms)
+            conn_params.max_int = 0x20; // 40ms (32 * 1.25ms)
+            conn_params.latency = 50;   // Allow 50 connection events to be skipped
+            conn_params.timeout = 400;  // 4000ms timeout (400 * 10ms)
             esp_ble_gap_update_conn_params(&conn_params);
+    	    break;
+    	case ESP_GATTS_DISCONNECT_EVT:
+            //ESP_LOGI(GATTS_TAG, "Disconnected, remote "ESP_BD_ADDR_STR", reason 0x%02x",
+                // ESP_BD_ADDR_HEX(param->disconnect.remote_bda), param->disconnect.reason);
+    	    is_connected = false;
+    	    enable_notify = false;
+            connection_id = 0xFFFF;
             
     	    esp_ble_gap_start_advertising(&advertising_params);
     	    break;
@@ -310,8 +317,6 @@ void CLICK_Task() {
     while(1) {
         if(xQueueReceive(myQueue, &curr_state, portMAX_DELAY)) {
             if (curr_state == 1) {
-                
-                temp = 1;
                 esp_ble_gatts_set_attr_value(
                     doorbell_handle_table[DOORBELL_IDX_VAL],
                     sizeof(curr_state),
@@ -413,40 +418,10 @@ void app_main(void)
         ESP_LOGE(GATTS_TAG, "Failed to set advertising TX power, error %d", ret);
         ESP_LOGE(GATTS_TAG, "Error string: %s", esp_err_to_name(ret));
     }
-    // esp_err_t power_ret = esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P20); // max for advertising
-    // if (power_ret != ESP_OK) {
-    //     ESP_LOGE(GATTS_TAG, "Failed to set advertising TX power, error %d", power_ret);
-    //     ESP_LOGE(GATTS_TAG, "Error string: %s", esp_err_to_name(power_ret));
-    // }
-    // esp_power_level_t level;
-    // level = esp_ble_tx_power_get(ESP_BLE_PWR_TYPE_ADV);
-
-    // if (level != ESP_PWR_LVL_INVALID) {
-    //     ESP_LOGI(GATTS_TAG, "BLE TX Power for connection handle %u = %d (index, not dBm)\n", connection_id, level);
-    // } else {
-    //     ESP_LOGE(GATTS_TAG, "Failed to read TX power, error code");
-    // }
-    // power_ret = ESP_FAIL;
-    // for (int i = 0; i < 5 && power_ret != ESP_OK; i++) {
-    //     vTaskDelay(200 / portTICK_PERIOD_MS);
-    //     power_ret = esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_CONN_HDL0, ESP_PWR_LVL_P20);
-    // }
-    // if (power_ret != ESP_OK) {
-    //     ESP_LOGE(GATTS_TAG, "Failed to set connection TX power, error %d", power_ret);
-    //     ESP_LOGE(GATTS_TAG, "Error string: %s", esp_err_to_name(power_ret));
-    // }
-
-    // level = esp_ble_tx_power_get(ESP_BLE_PWR_TYPE_CONN_HDL0 + connection_id);
-
-    // if (level != ESP_PWR_LVL_INVALID) {
-    //     ESP_LOGI(GATTS_TAG, "BLE TX Power for connection handle %u = %d (index, not dBm)\n", connection_id, level);
-    // } else {
-    //     ESP_LOGE(GATTS_TAG, "Failed to read TX power, error code");
-    // }
 
     // Configure Dynamic Frequency Scaling for power efficiency
     // Reduces CPU frequency when idle, allowing deeper sleep states
-    esp_pm_config_t pm_config = {
+    esp_pm_config_esp32_t pm_config = {
         .max_freq_mhz = 240,    // Max CPU frequency: 240MHz
         .min_freq_mhz = 80,     // Min CPU frequency: 80MHz (reduces when idle)
         .light_sleep_enable = true,  // Enable light sleep mode

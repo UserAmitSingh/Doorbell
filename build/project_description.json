@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "ble_spp_server_demo",
-    "project_version":    "1",
+    "project_version":    "9d3efd6-dirty",
     "project_path":       "C:/MizzouRacing/Doorbell/ble_spp_server",
     "idf_path":           "C:/Users/js476/esp/v5.5.1/esp-idf",
     "build_dir":          "C:/MizzouRacing/Doorbell/ble_spp_server/build",
