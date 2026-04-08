@@ -54,9 +54,9 @@ static const uint8_t advertise_data[17] = {
 /******************************* ADVERTISING PARAMATERS ****************************************/
 static esp_ble_adv_params_t advertising_params = {
     //Advertising interval in units of 0.625ms
-    //Increased to 2000-4000ms to significantly reduce power consumption when not connected
-    .adv_int_min        = 0xC80, //0xC80 * 0.625ms = 2000ms (2 seconds)
-    .adv_int_max        = 0x1900, //0x1900 * 0.625ms = 4000ms (4 seconds)
+    //Increased to 5000-10000ms for massive power savings when not connected
+    .adv_int_min        = 0x1F40, //0x1F40 * 0.625ms = 5000ms (5 seconds)
+    .adv_int_max        = 0x3E80, //0x3E80 * 0.625ms = 10000ms (10 seconds)
     .adv_type           = ADV_TYPE_IND, //Connectable and scannable advertising
     .own_addr_type      = BLE_ADDR_TYPE_PUBLIC, //Use public device address
     .channel_map        = ADV_CHNL_ALL, //Use all three BLE advertising channels (37, 38, 39)
@@ -360,8 +360,8 @@ void CLICK_Task() {
         }
         //Reset button state after processing
         curr_state = 0;
-        //Delay for 2 seconds for power efficiency - reduces CPU wake-ups significantly
-        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        //Delay for 5 seconds for maximum power efficiency - minimizes CPU wake-ups
+        vTaskDelay(5000 / portTICK_PERIOD_MS);
 
         //gpio_set_level(GPIO_LED, led_state); //LED control (currently unused)
     }
@@ -449,8 +449,8 @@ void app_main(void)
     //Configure automatic power management for maximum power efficiency
     //Enables dynamic frequency scaling and light sleep mode
     esp_pm_config_esp32_t pm_config = {
-        .max_freq_mhz = 160,    //Max CPU frequency: 160MHz (reduced from 240MHz for power savings)
-        .min_freq_mhz = 40,     //Min CPU frequency: 40MHz (reduced from 80MHz for deeper power savings)
+        .max_freq_mhz = 80,     //Max CPU frequency: 80MHz (reduced from 160MHz for extreme power savings)
+        .min_freq_mhz = 10,     //Min CPU frequency: 10MHz (absolute minimum for maximum power savings)
         .light_sleep_enable = true,  //Enable automatic light sleep when idle
     };
     esp_pm_configure(&pm_config);
